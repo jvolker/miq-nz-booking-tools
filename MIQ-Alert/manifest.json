@@ -1,0 +1,11 @@
+{
+  "name": "MIQ-Alert",
+  "version": "0.1",
+  "manifest_version": 2,
+  "description": "Searches MIQ website and plays a beep sound if available spots are found",
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["tabs", "<all_urls>"]
+}
