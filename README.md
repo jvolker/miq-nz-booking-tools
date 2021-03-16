@@ -3,7 +3,7 @@
 These tools were designed to make it easier to book a spot in New Zealand Managed Isolation and Quarantine. This should mainly help you save your precious time and not have to manually refresh the website until you find one of the rare spots.
 
 **HELP OTHERS:**  
-These tools will give you an advantage in booking a spot on New Zealand MIQ over other people not using tools like this one. Please keep in mind that your advantage in using this tool will make it harder for others, not using a helper tool, to get a spot. Please help other how like to get started with these tools, so everyone gets an equal chance. 
+These tools will give you an advantage in booking a spot on New Zealand MIQ over other people not using tools like this one. Please keep in mind that your advantage in using this tool will make it harder for others, not using a helper tool, to get a spot. Please help others to get started with these tools, so everyone gets an equal chance. 
 
 There are several media reports on the existence of multiple similar tools, but when these tools were created none of them seemed to be published publicly. Hopefully, by publishing, it's going to be fairer for everyone. 
 
@@ -22,7 +22,7 @@ Please use the issue section to help each other using this or discuss improvemen
 ## 1. MIQ Alert
 
 **Features**  
-This is a Chrome browser extension that continuously refreshes the ‘Secure your allocation’ page and beeps when new dates become available.
+This is a Chrome browser extension that continuously refreshes the MIQ portal home page and beeps when new dates become available.
 
 *This is easier to use. No coding skills required.*
 
@@ -41,7 +41,7 @@ This is a Chrome browser extension that continuously refreshes the ‘Secure you
 ## 2. MIQ Booking Assistance
 
 **Features**  
-This is a script based on [Puppeteer](https://github.com/puppeteer/puppeteer) that opens a browser window and helps you that continuously refreshes the ‘Secure your allocation’ page and beeps when new dates become available. It defaults to "Double" room option and "No" for the disability question. This is designed to save precious seconds when trying to book a spot. All manual input required is to select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot.
+This is a script based on [Puppeteer](https://github.com/puppeteer/puppeteer) that opens a browser window and continuously refreshes the ‘Secure your allocation’ page and beeps when new dates become available. It defaults to "Double" room option and "No" for the disability question. This is designed to save precious seconds when trying to book a spot. All manual input required is to select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot.
 
 *This is more unfinished and probably requires some coding skills.*
 
@@ -59,7 +59,7 @@ Register a booking using your regular browser (Firefox, Chrome, etc.) before sta
 5. The script automatically preselects "No" for the disability question. It finds availabilities only in the month selected in the code. 
 6. Wait to hear a beep when dates become available. Keep the window at maximum size.
 7. Quickly book your spot (select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot) on the same page. Alternatively, refresh the page to turn off the alarm. 
-8. You can close the script by pressing CTRL + C on the command line.
+8. You can close the script/window by pressing CTRL + C on the command line.
 
 *These defaults can be changed in the code (line 48 and 58). Customization is limited to those options at this stage but can be achieved by extending the script.*
 
@@ -71,9 +71,9 @@ This wil happen after the website has refreshed many times. Please wait 5-10 min
 
 > How much time to I have to book a spot?
 
-Probably between 10 and 20 seconds. This might vary though.
+It seems less than 10 seconds. This might vary though.
 
 **MIQ booking assistance only:**
 > What if I require other options to be selected from ‘Double’ room and ‘No’ for the disability question? 
 
-These settings are hardcoded. You can change them at the beginning of the `index.js` script.
+These settings are hardcoded. You can change them in the `index.js` script.
