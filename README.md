@@ -2,7 +2,7 @@
 
 These tools were designed to make it easier to book a spot in New Zealand Managed Isolation and Quarantine. This should mainly help you save your precious time and not have to manually refresh the website until you find one of the rare spots.
 
-**HELP OTHERS: **
+**HELP OTHERS:**  
 These tools will give you an advantage in booking a spot on New Zealand MIQ over other people not using tools like this one. Please keep in mind that your advantage in using this tool will make it harder for others, not using a helper tool, to get a spot. Please help other how like to get started with these tools, so everyone gets an equal chance. 
 
 There are several media reports on the existence of multiple similar tools, but when these tools were created none of them seemed to be published publicly. Hopefully, by publishing, it's going to be fairer for everyone. 
@@ -21,7 +21,7 @@ Please use the issue section to help each other using this or discuss improvemen
 
 ## 1. MIQ Alert
 
-**Features**
+**Features**  
 This is a Chrome browser extension that continuously refreshes the ‘Secure your allocation’ page and beeps when new dates become available.
 
 *This is easier to use. No coding skills required.*
@@ -40,7 +40,7 @@ This is a Chrome browser extension that continuously refreshes the ‘Secure you
 
 ## 2. MIQ Booking Assistance
 
-**Features**
+**Features**  
 This is a script based on [Puppeteer](https://github.com/puppeteer/puppeteer) that opens a browser window and helps you that continuously refreshes the ‘Secure your allocation’ page and beeps when new dates become available. It defaults to "Double" room option and "No" for the disability question. This is designed to save precious seconds when trying to book a spot. All manual input required is to select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot.
 
 *This is more unfinished and probably requires some coding skills.*
@@ -49,7 +49,7 @@ This is a script based on [Puppeteer](https://github.com/puppeteer/puppeteer) th
 1. Install [Node.js](https://nodejs.org/en/download/)
 2. Open a command-line window and navigate to the `MIQ-Booking-Assistance` folder and run `npm i` to install all dependencies.
 
-**Usage**
+**Usage**  
 Register a booking using your regular browser (Firefox, Chrome, etc.) before starting this process. 
 
 1. run `npm start` to start the script. 
