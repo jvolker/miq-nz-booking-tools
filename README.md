@@ -65,6 +65,16 @@ Register a booking using your regular browser (Firefox, Chrome, etc.) before sta
 
 ## FAQ
 
+> I'm lost.
+
+This project lives on Github a place where a lot of open-source projects are stored. On Github you can download the code of a project using the large and green `Code` button on the top (then click `Download ZIP`). Once you downloaded the code follow the guides from the top. If you have questions use the `Issues` section on the top.
+
+_If anyone would like to create a screencast video with a walkthrough, I will be very happy to add it to this document._
+
+> I have another question not answered here yet.
+
+If you have questions, feel free to use the `Issues` section (select at the top of this page). Asking publicly will help others with a similar question and you might get help from more people.
+
 > I’m getting a ‘502 Bad Gateway Error’. What should I do? 
 
 This wil happen after the website has refreshed many times. Please wait 5-10 minutes and reactivate the plug in.
