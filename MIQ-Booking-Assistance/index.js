@@ -38,7 +38,7 @@ puppeteer.use(StealthPlugin());
 
     await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36');
 
-    if (step === "login") await login()
+    if (step === "login") await login(page)
     else {
         await page.goto('https://allocation.miq.govt.nz/portal/dashboard');
 
@@ -52,11 +52,11 @@ puppeteer.use(StealthPlugin());
 
         console.log('outside loop - on booking site')
 
-        await prepareAndCheckPage()
+        await prepareAndCheckPage(page)
     }
 })();
 
-async function login() {
+async function login(page) {
     // this is not in use at the moment but might be used to prefill credentials
 
     await page.goto('https://allocation.miq.govt.nz/portal/login');
@@ -69,7 +69,7 @@ async function login() {
     // await page.click(consentButton);
 }
 
-async function prepareAndCheckPage() {
+async function prepareAndCheckPage(page) {
     //accessibility requirement
     await page.waitForSelector('#form_rooms_0_accessibilityRequirement_1');
     page.$eval('#form_rooms_0_accessibilityRequirement_' + (accessibilityRequirement ? 0 : 1), elem => {
@@ -77,7 +77,7 @@ async function prepareAndCheckPage() {
     });
 
     await page.waitForSelector('.flatpickr-input');
-    const found = await page.$eval('.flatpickr-input', elem => {
+    const found = await page.$eval('.flatpickr-input', (elem, month) => {
         const fp = elem._flatpickr
 
         //choose month
@@ -94,13 +94,13 @@ async function prepareAndCheckPage() {
         } else {
             return false
         }
-    })
+    }, month);
 
     // reload if nothing was available
     if (!found) {
         await page.waitForTimeout(secondsTillRefresh * 1000);
         await page.reload({waitUntil: ["networkidle0", "domcontentloaded"]});
-        await prepareAndCheckPage()
+        await prepareAndCheckPage(page)
     }
 }
 
