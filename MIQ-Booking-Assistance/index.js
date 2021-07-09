@@ -17,7 +17,6 @@ const secondsTillRefresh = 3;
 // --------------
 
 const puppeteer = require('puppeteer-extra');
-const UserAgent = require('user-agents');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 
 puppeteer.use(StealthPlugin());
@@ -61,8 +60,8 @@ async function login(page) {
 
     await page.goto('https://allocation.miq.govt.nz/portal/login');
 
-    await page.$eval('#username ', el => el.value = email); // replace YOUR_EMAIL_ADDRESS with your email address
-    await page.$eval('#password ', el => el.value = password); // replace YOUR_PASSWORD with your password address
+    await page.$eval('#username ', (el, email) => { el.value = email }, email); // replace YOUR_EMAIL_ADDRESS with your email address
+    await page.$eval('#password ', (el, password) => { el.value = password }, password); // replace YOUR_PASSWORD with your password address
 
     // const consentButton = '#gtm-acceptAllCookieButton';
     // await page.waitForSelector(consentButton);
