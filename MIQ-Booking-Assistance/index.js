@@ -33,8 +33,8 @@ const secondsTillRefresh = 3;
 
         await page.goto('https://allocation.miq.govt.nz/portal/login');
         
-        await page.$eval('#username ', el => el.value = 'YOUR_EMAIL_ADDRESS'); // replace YOUR_EMAIL_ADDRESS with your email address 
-        await page.$eval('#password ', el => el.value = 'YOUR_PASSWORD'); // replace YOUR_PASSWORD with your password address
+        await page.$eval('#username ', el => el.value = 'emmamaconick@yahoo.co.uk'); // replace YOUR_EMAIL_ADDRESS with your email address 
+        await page.$eval('#password ', el => el.value = 'M4n4g3d1s0l4t10n!'); // replace YOUR_PASSWORD with your password address
         
         // const consentButton = '#gtm-acceptAllCookieButton';
         // await page.waitForSelector(consentButton);
@@ -42,6 +42,14 @@ const secondsTillRefresh = 3;
     }
 
     async function prepareAndCheckPage(){
+        //room number
+        await page.waitForSelector('#form_no_of_rooms');
+        const numberOfRooms = '1'; //default is 1 change to 2 if you need 2 rooms
+        await page.select('select#form_no_of_rooms', numberOfRooms);
+
+        const roomType = 'Twin share'; //default is 'Double' change to 'Twin Share' if you want 4 ppl per room
+        await page.select('select#form_rooms_0_room', roomType);
+
 
         //accessibility requirement
         await page.waitForSelector('#form_rooms_0_accessibilityRequirement_1');
@@ -50,12 +58,33 @@ const secondsTillRefresh = 3;
             elem.checked = true;
         });
 
+
+        if (numberOfRooms == '2') {
+            //adjoining rooms
+            await page.waitForSelector('#form_adjoining_rooms');
+            const adjoiningRooms = true; // change to "true" if you have accessibility requirement
+            page.$eval('#form_adjoining_rooms_' + (adjoiningRooms ? 0 : 1), elem => {
+                elem.checked = true;
+            });
+
+            await page.select('select#form_rooms_1_room', roomType);
+        
+            //adjoining room accessibility requirement
+            await page.waitForSelector('#form_rooms_1_accessibilityRequirement_1');
+            const accessibilityRequirement2 = false; // change to "true" if you have accessibility requirement
+            page.$eval('#form_rooms_1_accessibilityRequirement_' + (accessibilityRequirement2 ? 0 : 1), elem => {
+                elem.checked = true;
+            });
+        }
+
+
+
         await page.waitForSelector('.flatpickr-input');
         const found = await page.$eval('.flatpickr-input', elem => {
             const fp = elem._flatpickr
 
             //choose month
-            const month = 5; // april = 4, may = 5, june = 6, july = 7, etc.
+            const month = 11; // april = 4, may = 5, june = 6, july = 7, etc.
             fp.changeMonth(month - 1, false)
             
             //find available spots
