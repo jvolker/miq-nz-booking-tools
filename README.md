@@ -61,7 +61,7 @@ Register a booking using your regular browser (Firefox, Chrome, etc.) before sta
 7. Quickly book your spot (select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot) on the same page. Alternatively, refresh the page to turn off the alarm. 
 8. You can close the script/window by pressing CTRL + C on the command line.
 
-*These defaults can be changed in the code (line 48 and 58). Customization is limited to those options at this stage but can be achieved by extending the script.*
+*These defaults can be changed at the top of the file `index.js` under `MIQ-Booking-Assistance` folder. Customization is limited to those options at this stage but can be achieved by extending the script.*
 
 ## FAQ
 
