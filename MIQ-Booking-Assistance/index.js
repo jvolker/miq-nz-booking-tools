@@ -1,19 +1,26 @@
 // MIQ BOOKING ASSISTANCE
-// EDIT THE VARIABLES BELOW TO SUIT YOUR REQUIREMENTS
-// --------------
-const email = 'YOUR_EMAIL_ADDRESS';
-const password = 'YOUR_PASSWORD';
 
 // CHANGE MONTH NUMBER TO DESIRED MONTH
 // january = 1, february = 2, march = 3, april = 4, may = 5, june = 6, july = 7, august = 8, september = 9, october = 10, november = 11, december = 12
 const month = 5;
 const accessibilityRequirement = false; // change to "true" if you have accessibility requirement
 
-// switch to "login" to prefill credentials on login. Afterwards you need to switch back to "login-done" and restart the script.
+// --------------
+// OPTIONAL: PREFILL LOGIN
+
+// You will have to login to your MIQ account in the browser window. You probably best login manually at the start.
+// But if you like you can prefill credentials instead. To do this you have to change the option to "login", run the script and login. Afterwards you need to switch back to "login-done" and restart the script.
 const step = "login-done"; // options: "login", "login-done"
 
-// How many seconds to refresh the page.
+// edit the variables below to suit your requirements
+const email = 'YOUR_EMAIL_ADDRESS';
+const password = 'YOUR_PASSWORD';
+
+// --------------
+// OPTIONAL: How many seconds to refresh the page. 
+// Don't decrease this further to prevent 403 errors: https://github.com/jvolker/miq-nz-booking-tools/issues/8
 const secondsTillRefresh = 3;
+
 // --------------
 
 const puppeteer = require('puppeteer-extra');
