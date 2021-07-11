@@ -12,7 +12,6 @@
   "dependencies": {
     "puppeteer": "^5.5.0",
     "puppeteer-extra": "^3.1.16",
-    "puppeteer-extra-plugin-stealth": "^2.6.6",
-    "user-agents": "^1.0.559"
+    "puppeteer-extra-plugin-stealth": "^2.6.6"
   }
 }
