@@ -19,7 +19,7 @@ const password = 'YOUR_PASSWORD';
 // --------------
 // OPTIONAL: How many seconds to refresh the page. 
 // Don't decrease this further to prevent 403 errors: https://github.com/jvolker/miq-nz-booking-tools/issues/8
-const secondsTillRefresh = 3;
+const secondsTillRefresh = 5;
 
 // --------------
 
