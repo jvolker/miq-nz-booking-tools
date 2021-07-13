@@ -41,18 +41,21 @@ This is a Chrome browser extension that continuously refreshes the MIQ portal ho
 ## 2. MIQ Booking Assistance
 
 **Features**  
-This is a script based on [Puppeteer](https://github.com/puppeteer/puppeteer) that opens a browser window and continuously refreshes the ‘Secure your allocation’ page and beeps when new dates become available. It defaults to "Double" room option and "No" for the disability question. This is designed to save precious seconds when trying to book a spot. All manual input required is to select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot.
+This is a script based on [Puppeteer](https://github.com/puppeteer/puppeteer) that opens a browser window and continuously refreshes the ‘Secure your allocation’ page and beeps when new dates become available. It defaults to "Double" room option and "No" for the disability question. This is designed to save precious seconds when trying to book a spot. All manual input required is to tick the reCAPTCHA and click ‘Next’ to secure your spot.
 
 *This is more unfinished and probably requires some coding skills.*
 
 **Install**
 1. Install [Node.js](https://nodejs.org/en/download/)
-2. Open a command-line window and navigate to the `MIQ-Booking-Assistance` folder and run `npm i` to install all dependencies.
+2. Open a command-line window (in your windows search bar type `command prompt`) 
+3. In the command window navigate to the `MIQ-Booking-Assistance` folder (probably in your downloads folder).  Do this by typing `cd` followed by the location of the
+afore mentioned folder.  For me it is `C:\Users\MrBeenjammin\Downloads\miq-nz-booking-tools\MIQ-Booking-Assistance`  Note, if you have a space in your file path you will need to enclose the path with inverted commas ("fp").
+4. Now type `npm i` into the command window to install all dependencies.
 
 **Usage**  
-Register a booking using your regular browser (Firefox, Chrome, etc.) before starting this process. 
+Register a booking using your regular browser (Firefox, Chrome, etc.) before starting this process.  Note you can edit the code in the 'index.js' file, this can be done in notepad or word but using even a basic editor like [notepad++](https://notepad-plus-plus.org/downloads/v8.1.1/) will make your life a lot easier.
 
-1. run `npm start` to start the script. 
+1. In the command window, run `npm start` to start the script. 
 2. Log in.
 3. Click on the `View` button of your booking slot.
 4. Click on the `Secure your allocation` button.
