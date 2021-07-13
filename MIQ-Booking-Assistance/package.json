@@ -12,7 +12,6 @@
   "author": "github contributors",
   "license": "ISC",
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0",
     "puppeteer": "^5.5.0",
     "puppeteer-extra": "^3.1.16",
     "puppeteer-extra-plugin-stealth": "^2.7.8"
@@ -23,7 +22,8 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.57",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.57",
     "@electron-forge/maker-zip": "^6.0.0-beta.57",
-    "electron": "^13.1.6"
+    "electron": "^13.1.6",
+    "electron-squirrel-startup": "^1.0.0"
   },
   "config": {
     "forge": {

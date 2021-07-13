@@ -7,11 +7,42 @@
     <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <title>MIQ Booking Assistance</title>
 </head>
-<script src="./renderer.js"></script>
 <body>
 <h1>MIQ Booking Assistance</h1>
 <hr/>
-<p>A new browser window should appear. Please navigate to "Secure your allocation" page.</p>
+<p id="status">Starting...</p>
+<p id="status-count"></p>
 <hr/>
+<div>
+    <h3>Settings:</h3>
+    <label for="months">Month:</label>
+    <select name="months" id="months">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+    </select></div>
+    <br/>
+    <label for="roomType">Room Type:</label>
+
+    <select name="roomType" id="roomType">
+        <option value="double">Double</option>
+        <option value="twin">Twin Share</option>
+    </select></div>
+
+    <p>Accessibility Room:</p>
+    <input type="radio" id="accessibilityRoom_yes" name="accessibilityRoom">
+    <label for="accessibilityRoom_yes">Yes</label><br>
+    <input type="radio" id="accessibilityRoom_no" name="accessibilityRoom" checked>
+    <label for="accessibilityRoom_no">No</label><br>
 </body>
+<script src="./renderer.js"></script>
 </html>
