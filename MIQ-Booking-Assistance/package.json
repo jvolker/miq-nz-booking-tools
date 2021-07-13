@@ -1,17 +1,55 @@
 {
   "name": "miq-nz-booking-tools",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A tool to help you book MIQ",
+  "main": "main.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron-forge start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
-  "author": "",
+  "author": "github contributors",
   "license": "ISC",
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
     "puppeteer": "^5.5.0",
     "puppeteer-extra": "^3.1.16",
-    "puppeteer-extra-plugin-stealth": "^2.6.6"
+    "puppeteer-extra-plugin-stealth": "^2.7.8"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.57",
+    "@electron-forge/maker-deb": "^6.0.0-beta.57",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.57",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.57",
+    "@electron-forge/maker-zip": "^6.0.0-beta.57",
+    "electron": "^13.1.6"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "miq_nz_booking_tools"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   }
 }

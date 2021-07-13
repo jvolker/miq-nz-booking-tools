@@ -113,8 +113,6 @@ async function prepareAndCheckPage(page) {
         console.log("AVAILABLE! Found at: " + new Date().toLocaleString())
     } else {
         // reload if nothing was available
-        process.stdout.moveCursor(0, -1) // up one line
-        process.stdout.clearLine(1) // from cursor to end
         console.log('Checked MIQ: ' + ++checkedCount + ' times, last checked at: ' + new Date().toLocaleString());
         await page.waitForTimeout(secondsTillRefresh * 1000);
         await page.reload({waitUntil: ["networkidle0", "domcontentloaded"]});

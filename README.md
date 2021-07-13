@@ -41,13 +41,12 @@ This is a Chrome browser extension that continuously refreshes the MIQ portal ho
 ## 2. MIQ Booking Assistance
 
 **Features**  
-This is a script based on [Puppeteer](https://github.com/puppeteer/puppeteer) that opens a browser window and continuously refreshes the ‘Secure your allocation’ page and beeps when new dates become available. It defaults to "Double" room option and "No" for the disability question. This is designed to save precious seconds when trying to book a spot. All manual input required is to select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot.
-
-*This is more unfinished and probably requires some coding skills.*
+This is an electron app that uses [Puppeteer](https://github.com/puppeteer/puppeteer) to open a browser window and continuously refreshes the ‘Secure your allocation’ page and beeps when new dates become available. It defaults to "Double" room option and "No" for the disability question. This is designed to save precious seconds when trying to book a spot. All manual input required is to select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot.
 
 **Install**
 1. Install [Node.js](https://nodejs.org/en/download/)
 2. Open a command-line window and navigate to the `MIQ-Booking-Assistance` folder and run `npm i` to install all dependencies.
+3. run `npm run make` to build the electron application. It will be made in the out directory.
 
 **Usage**  
 Register a booking using your regular browser (Firefox, Chrome, etc.) before starting this process. 
