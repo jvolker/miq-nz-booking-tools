@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 const miq = require('./miq-assistance');
 
@@ -7,7 +7,7 @@ const miq = require('./miq-assistance');
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
     const mainWindow = createWindow();
-    miq.start(mainWindow);
+    miq.start(mainWindow, ipcMain);
 
     app.on('activate', function () {
         // On macOS it's common to re-create a window in the app when the

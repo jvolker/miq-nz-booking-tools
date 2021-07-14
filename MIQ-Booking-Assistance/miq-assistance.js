@@ -26,19 +26,15 @@ const secondsTillRefresh = 5;
 
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-const { ipcMain } = require('electron');
 let checkedCount = 0;
+let electronWindow;
 
 const service = {
     start: start
 }
 
-function start(window) {
-    ipcMain.on('settings', (ev, settings) => {
-        month = settings.month;
-        accessibilityRequirement = settings.accessibilityRequirement;
-        roomType = settings.roomType;
-    });
+function start(window, ipcMain) {
+    initElectron(ipcMain, window)
 
     puppeteer.use(StealthPlugin());
 
@@ -61,7 +57,7 @@ function start(window) {
         if (step === "login") await login(page)
         else {
             console.log('Welcome to the MIQ Booking Assistance!')
-            window.webContents.send('status', { message: 'A new browser window should appear. Please navigate to "Secure your allocation" page.'})
+            updateElectronStatus('status', 'A new browser window should appear. Please navigate to "Secure your allocation" page.');
             console.log('A new browser window should appear. Please navigate to "Secure your allocation" page.')
             await page.goto('https://allocation.miq.govt.nz/portal/dashboard');
             while (true) {
@@ -71,7 +67,7 @@ function start(window) {
                 }
             }
 
-            window.webContents.send('status', { message: 'Found "Secure your allocation" page! Wait for beep sound, then select date and continue booking.'})
+            updateElectronStatus('status', 'Found "Secure your allocation" page! Wait for beep sound, then select date and continue booking.')
             console.log('Found "Secure your allocation" page! Wait for beep sound, then select date and continue booking.')
             await prepareAndCheckPage(page, window)
         }
@@ -136,16 +132,33 @@ async function prepareAndCheckPage(page, window) {
     }, month);
 
     if (found) {
-        console.log("AVAILABLE! Found at: " + new Date().toLocaleString())
+        const status = "AVAILABLE! Found at: " + new Date().toLocaleString();
+        console.log(status)
+        updateElectronStatus('status-count', status);
     } else {
         // reload if nothing was available
-        let status = 'Checked MIQ: ' + ++checkedCount + ' times, last checked at: ' + new Date().toLocaleString();
+        const status = 'Checked MIQ: ' + ++checkedCount + ' times, last checked at: ' + new Date().toLocaleString();
         console.log(status);
-        window.webContents.send('status-count', { message: status})
+        updateElectronStatus('status-count', status);
         await page.waitForTimeout(secondsTillRefresh * 1000);
         await page.reload({waitUntil: ["networkidle0", "domcontentloaded"]});
         await prepareAndCheckPage(page, window)
     }
+}
+
+function initElectron(ipcMain, window) {
+    electronWindow = window;
+    if (!ipcMain) return;
+    ipcMain.on('settings', (ev, settings) => {
+        month = settings.month;
+        accessibilityRequirement = settings.accessibilityRequirement;
+        roomType = settings.roomType;
+    });
+}
+
+function updateElectronStatus(channel, message) {
+    if (!electronWindow) return;
+    electronWindow.webContents.send(channel, { message: message })
 }
 
 module.exports = service;
