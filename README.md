@@ -68,7 +68,7 @@ Register a booking using your regular browser (Firefox, Chrome, etc.) before sta
 **Features**  
 This is an electron application that runs the same script above to check for MIQ spots.
 
-*This is more unfinished and probably requires some coding skills.*
+*This is the recommended way for most people and doesn't require any coding skills*
 
 **Install**
 1. Install [Node.js](https://nodejs.org/en/download/)

@@ -136,7 +136,12 @@ async function prepareAndCheckPage(page, window) {
         console.log(status)
         updateElectronStatus('status-count', status);
     } else {
-        // reload if nothing was available
+        // Remove the previous log message if we have checked before and we are running in node.
+        if (process.stdout.moveCursor && checkedCount){
+            process.stdout.moveCursor(0, -1) // up one line
+            process.stdout.clearLine(1) // from cursor to end
+        }
+
         const status = 'Checked MIQ: ' + ++checkedCount + ' times, last checked at: ' + new Date().toLocaleString();
         console.log(status);
         updateElectronStatus('status-count', status);
