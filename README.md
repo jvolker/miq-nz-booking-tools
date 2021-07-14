@@ -47,24 +47,22 @@ This is a script based on [Puppeteer](https://github.com/puppeteer/puppeteer) th
 
 **Install**
 1. Install [Node.js](https://nodejs.org/en/download/)
-2. Open a command-line window (in your windows search bar type `command prompt`) 
-3. In the command window navigate to the `MIQ-Booking-Assistance` folder (probably in your downloads folder).  Do this by typing `cd` followed by the location of the
-afore mentioned folder.  For me it is `C:\Users\MrBeenjammin\Downloads\miq-nz-booking-tools\MIQ-Booking-Assistance`  Note, if you have a space in your file path you will need to enclose the path with inverted commas ("fp").
-4. Now type `npm i` into the command window to install all dependencies.
+2. Run the batch file (located in the miq-nz-booking-tools folder) named `run_this_first_and_only_once` to install dependencies
 
 **Usage**  
-Register a booking using your regular browser (Firefox, Chrome, etc.) before starting this process.  Note you can edit the code in the 'index.js' file, this can be done in notepad or word but using even a basic editor like [notepad++](https://notepad-plus-plus.org/downloads/v8.1.1/) will make your life a lot easier.
+Register a booking using your regular browser (Firefox, Chrome, etc.) before starting this process.  Note you can edit the code in the 'index.js' file, this can be done in notepad or word but using even a basic editor like [notepad++](https://notepad-plus-plus.org/downloads/v8.1.1/) will make your life a lot easier.  The script has options to set your password, choose dates and set disability requirements.
+In my experience, to save a few seconds, you want to be able to just 'tick' the catchpa without solving it.  It seems if you log in every twenty minutes, then you are 'allowed' to pass the catchpa test without having to solve an image.
 
-1. In the command window, run `npm start` to start the script. 
-2. Log in.
+1. Run the batch file (located in the miq-nz-booking-tools folder) named `run_this_second_to_open_MIQ` 
+2. Log in if required.
 3. Click on the `View` button of your booking slot.
-4. Click on the `Secure your allocation` button.
+4. The script will try to click on the `Secure your allocation` button, if it does not, do so manually.
 5. The script automatically preselects "No" for the disability question. It finds availabilities only in the month selected in the code. 
 6. Wait to hear a beep when dates become available. Keep the window at maximum size.
-7. Quickly book your spot (select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot) on the same page. Alternatively, refresh the page to turn off the alarm. 
+7. Quickly book your spot, the script will select a date for you but you can change it. Then tick the reCAPTCHA and click ‘Next’ to secure your spot. Alternatively, refresh the page to turn off the alarm. 
 8. You can close the script/window by pressing CTRL + C on the command line.
 
-*These defaults can be changed in the code (line 48 and 58). Customization is limited to those options at this stage but can be achieved by extending the script.*
+*These defaults can be changed in the code. Customization is limited to those options at this stage but can be achieved by extending the script.*
 
 ## FAQ
 
