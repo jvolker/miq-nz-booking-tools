@@ -2,7 +2,9 @@
 
 // CHANGE MONTH NUMBER TO DESIRED MONTH
 // january = 1, february = 2, march = 3, april = 4, may = 5, june = 6, july = 7, august = 8, september = 9, october = 10, november = 11, december = 12
-const month = 11;
+const month = [11,10,9,8,7]; // will search for in the month by order of preference (left to right)
+// choose which dates you want (in order of preference, left to right)
+const myDates = [31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1];
 const accessibilityRequirement = false; // change to "true" if you have accessibility requirement
 
 // --------------
@@ -46,7 +48,7 @@ puppeteer.use(StealthPlugin());
     await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36');
 
     if (step === "login") await login(page)
-    else {
+    // delete else statement, we want to continmue with script if user logs in
         console.log('Welcome to the MIQ Booking Assistance!')
         console.log('A new browser window should appear. Please navigate to "Secure your allocation" page.')
         await page.goto('https://allocation.miq.govt.nz/portal/dashboard');
@@ -59,7 +61,6 @@ puppeteer.use(StealthPlugin());
 
         console.log('Found "Secure your allocation" page! Wait for beep sound, then select date and continue booking.')
         await prepareAndCheckPage(page)
-    }
 })();
 
 async function login(page) {
@@ -83,12 +84,16 @@ async function prepareAndCheckPage(page) {
     });
 
     await page.waitForSelector('.flatpickr-input');
-    const found = await page.$eval('.flatpickr-input', (elem, month) => {
+    const found = false
+    const thisMonth = false
+    for (let x in month) {
+        const thisMonth = month[x];
+    const found = await page.$eval('.flatpickr-input', (elem, thisMonth) => {
         elem.scrollIntoView();
         const fp = elem._flatpickr
 
         //choose month
-        fp.changeMonth(month - 1, false)
+        fp.changeMonth(thisMonth - 1, false)
 
         //find available spots
         var available = document.querySelectorAll('.flatpickr-day:not(.flatpickr-disabled)');
@@ -107,11 +112,28 @@ async function prepareAndCheckPage(page) {
             snd.loop = true;
             snd.play();
         }
-    }, month);
+    }, thisMonth);
 
     if (found) {
-        console.log("AVAILABLE! Found at: " + new Date().toLocaleString())
-    } else {
+        // functionality to loop through dates in the list and click the first one that is available
+            for (let x in myDates) {
+                const thisDate = myDates[x]; // set date
+                const selector_text = 'span[aria-label*="'.concat(thisDate).concat('"][class*="flatpickr-day"]:not([class*="disabled"])');
+                let date_eval = await page.evaluate(({selector_text}) => {
+                    let el = document.querySelector(selector_text)
+                    return el ? el.innerText : ""
+                },{selector_text});
+
+                if (date_eval != ""){
+                    await page.click('span[aria-label*="'.concat(date_eval).concat('"][class*="flatpickr-day"]:not([class*="disabled"])'));// click the date
+                    console.log("AVAILABLE! Found at: " + new Date().toLocaleString())
+                    console.log('Crossing fingers - good luck...')
+                    await page.waitForTimeout(secondsTillRefresh * 100000);// give the use tome to complete clicks
+                }
+            }
+    }
+}    
+    if (!found)  {
         // reload if nothing was available
         process.stdout.moveCursor(0, -1) // up one line
         process.stdout.clearLine(1) // from cursor to end
