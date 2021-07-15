@@ -19,73 +19,24 @@ These tools are only a quick attempt to create some remedy. They are by far, not
 
 Please use the issue section to help each other using this or discuss improvements. Of course, pull requests are welcome too.
 
-## 1. MIQ Alert
+## MIQ Booking Assistance
+
+*This is the recommended way for most people and doesn't require any coding skills*
+
+**Features**  
+This script/app opens a browser window and continuously refreshes the ‘Secure your allocation’ page and beeps when new dates become available. It prefills the form to save precious seconds when trying to book a spot. All manual input required is to select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot.
+
+[read more](https://github.com/jvolker/miq-nz-booking-tools/blob/master/MIQ-Booking-Assistance/README.md)
+
+## MIQ Alert
+
+*This is a different approach. It doesn't offer as many features and is therefore not used by as many people. No coding skills required.*
 
 **Features**  
 This is a Chrome browser extension that continuously refreshes the MIQ portal home page and beeps when new dates become available.
 
-*This is easier to use. No coding skills required.*
 
-**Install**
-1. Open this URL in Chrome: `chrome://extensions/`.
-2. Activate `Developer Mode` on this page.
-3. Click `Load Unpacked` choose the MIQ-Alert folder to add the extension.
-
-**Usage**
-1. Open the MIQ portal: `https://allocation.miq.govt.nz/portal/`.
-2. (Click puzzle icon to see all extensions in top-right corner.)
-3. Click on the yellow circle in the top-right corner.
-4. Wait to hear a beep when dates become available. Keep the window at maximum size, don’t switch to another window.
-5. Quickly book your spot using a separate browser (Firefox, Safari, Edge, …) where you are logged in already.
-
-## 2. MIQ Booking Assistance
-
-**Features**  
-This is a script based on [Puppeteer](https://github.com/puppeteer/puppeteer) that opens a browser window and continuously refreshes the ‘Secure your allocation’ page and beeps when new dates become available. It defaults to "Double" room option and "No" for the disability question. This is designed to save precious seconds when trying to book a spot. All manual input required is to select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot.
-
-*This is more unfinished and probably requires some coding skills.*
-
-**Install**
-1. Install [Node.js](https://nodejs.org/en/download/)
-2. Open a command-line window and navigate to the `MIQ-Booking-Assistance` folder and run `npm i` to install all dependencies.
-
-**Usage**  
-Register a booking using your regular browser (Firefox, Chrome, etc.) before starting this process. 
-
-1. run `npm start` to start the script. 
-2. Log in.
-3. Click on the `View` button of your booking slot.
-4. Click on the `Secure your allocation` button.
-5. The script automatically preselects "No" for the disability question. It finds availabilities only in the month selected in the code. 
-6. Wait to hear a beep when dates become available. Keep the window at maximum size.
-7. Quickly book your spot (select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot) on the same page. Alternatively, refresh the page to turn off the alarm. 
-8. You can close the script/window by pressing CTRL + C on the command line.
-
-*These defaults can be changed at the top of the file `miq-assistance.js` under `MIQ-Booking-Assistance` folder. Customization is limited to those options at this stage but can be achieved by extending the script.*
-
-## 3. MIQ Booking Assistance (Electron application, currently in progress)
-
-**Features**  
-This is an electron application that runs the same script above to check for MIQ spots.
-
-*This is the recommended way for most people and doesn't require any coding skills*
-
-**Install**
-1. Install [Node.js](https://nodejs.org/en/download/)
-2. Open a command-line window and navigate to the `MIQ-Booking-Assistance` folder and run `npm i` to install all dependencies.
-3. `npm run make` will build the electron application, it outputs it in `out` folder.
-
-**Usage**  
-Register a booking using your regular browser (Firefox, Chrome, etc.) before starting this process.
-
-1. Run the application that was built in `out`
-2. Log in.
-3. Click on the `View` button of your booking slot.
-4. Click on the `Secure your allocation` button.
-5. Change your preference for room type, month etc. from the settings window that also opens
-6. Wait to hear a beep when dates become available. Keep the window at maximum size.
-7. Quickly book your spot (select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot) on the same page. Alternatively, refresh the page to turn off the alarm.
-
+[read more](https://github.com/jvolker/miq-nz-booking-tools/blob/master/MIQ-Alert/README.md)
 ## FAQ
 
 > I'm lost.
