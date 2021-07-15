@@ -45,8 +45,7 @@ function start(window, ipcMain) {
             devtools: false,
             // isMobile: true,
             // hasTouch: true,
-            args: [`--window-size=1920,1080`],
-            userDataDir: "./user_data"
+            args: [`--window-size=1920,1080`]
         });
 
         // Use current page
