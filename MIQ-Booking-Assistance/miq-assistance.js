@@ -2,8 +2,9 @@
 
 // CHANGE MONTH NUMBER TO DESIRED MONTH
 // january = 1, february = 2, march = 3, april = 4, may = 5, june = 6, july = 7, august = 8, september = 9, october = 10, november = 11, december = 12
-const month = 11;
-const accessibilityRequirement = false; // change to "true" if you have accessibility requirement
+let month = 11;
+let accessibilityRequirement = false; // change to "true" if you have accessibility requirement
+let roomType = 'twin'; // double or twin
 
 // --------------
 // OPTIONAL: PREFILL LOGIN
@@ -26,41 +27,52 @@ const secondsTillRefresh = 5;
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 let checkedCount = 0;
+let electronWindow;
 
-puppeteer.use(StealthPlugin());
+const service = {
+    start: start
+}
 
-(async () => {
-    const browser = await puppeteer.launch({
-        defaultViewport: null,
-        headless: false,
-        devtools: false,
-        // isMobile: true,
-        // hasTouch: true,
-        args: [`--window-size=1920,1080`],
-        userDataDir: "./user_data"
-    });
+function start(window, ipcMain) {
+    initElectron(ipcMain, window)
 
-    // Use current page
-    const page = (await browser.pages())[0];
+    puppeteer.use(StealthPlugin());
 
-    await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36');
+    (async () => {
+        const browser = await puppeteer.launch({
+            defaultViewport: null,
+            headless: false,
+            devtools: false,
+            // isMobile: true,
+            // hasTouch: true,
+            args: [`--window-size=1920,1080`],
+            userDataDir: "./user_data"
+        });
 
-    if (step === "login") await login(page)
-    else {
-        console.log('Welcome to the MIQ Booking Assistance!')
-        console.log('A new browser window should appear. Please navigate to "Secure your allocation" page.')
-        await page.goto('https://allocation.miq.govt.nz/portal/dashboard');
-        while (true) {
-            await page.waitForTimeout(300);
-            if (page.url().includes('/event/MIQ-DEFAULT-EVENT/accommodation')) {
-                break
+        // Use current page
+        const page = (await browser.pages())[0];
+
+        await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36');
+
+        if (step === "login") await login(page)
+        else {
+            console.log('Welcome to the MIQ Booking Assistance!')
+            updateElectronStatus('status', 'A new browser window should appear. Please navigate to "Secure your allocation" page.');
+            console.log('A new browser window should appear. Please navigate to "Secure your allocation" page.')
+            await page.goto('https://allocation.miq.govt.nz/portal/dashboard');
+            while (true) {
+                await page.waitForTimeout(300);
+                if (page.url().includes('/event/MIQ-DEFAULT-EVENT/accommodation')) {
+                    break
+                }
             }
-        }
 
-        console.log('Found "Secure your allocation" page! Wait for beep sound, then select date and continue booking.')
-        await prepareAndCheckPage(page)
-    }
-})();
+            updateElectronStatus('status', 'Found "Secure your allocation" page! Wait for beep sound, then select date and continue booking.')
+            console.log('Found "Secure your allocation" page! Wait for beep sound, then select date and continue booking.')
+            await prepareAndCheckPage(page, window)
+        }
+    })();
+}
 
 async function login(page) {
     // this is not in use at the moment but might be used to prefill credentials
@@ -75,12 +87,22 @@ async function login(page) {
     // await page.click(consentButton);
 }
 
-async function prepareAndCheckPage(page) {
+async function prepareAndCheckPage(page, window) {
     //accessibility requirement
     await page.waitForSelector('#form_rooms_0_accessibilityRequirement_1');
     page.$eval('#form_rooms_0_accessibilityRequirement_' + (accessibilityRequirement ? 0 : 1), elem => {
         elem.checked = true;
     });
+
+    page.$eval('#form_rooms_0_room', (elem, roomType) => {
+        switch (roomType){
+            case 'twin':
+                elem.value = 'Twin share';
+                break;
+            default:
+                elem.value = 'Double';
+        }
+    }, roomType);
 
     await page.waitForSelector('.flatpickr-input');
     const found = await page.$eval('.flatpickr-input', (elem, month) => {
@@ -110,14 +132,38 @@ async function prepareAndCheckPage(page) {
     }, month);
 
     if (found) {
-        console.log("AVAILABLE! Found at: " + new Date().toLocaleString())
+        const status = "AVAILABLE! Found at: " + new Date().toLocaleString();
+        console.log(status)
+        updateElectronStatus('status-count', status);
     } else {
-        // reload if nothing was available
-        process.stdout.moveCursor(0, -1) // up one line
-        process.stdout.clearLine(1) // from cursor to end
-        console.log('Checked MIQ: ' + ++checkedCount + ' times, last checked at: ' + new Date().toLocaleString());
+        // Remove the previous log message if we have checked before and we are running in node.
+        if (process.stdout.moveCursor && checkedCount){
+            process.stdout.moveCursor(0, -1) // up one line
+            process.stdout.clearLine(1) // from cursor to end
+        }
+
+        const status = 'Checked MIQ: ' + ++checkedCount + ' times, last checked at: ' + new Date().toLocaleString();
+        console.log(status);
+        updateElectronStatus('status-count', status);
         await page.waitForTimeout(secondsTillRefresh * 1000);
         await page.reload({waitUntil: ["networkidle0", "domcontentloaded"]});
-        await prepareAndCheckPage(page)
+        await prepareAndCheckPage(page, window)
     }
 }
+
+function initElectron(ipcMain, window) {
+    electronWindow = window;
+    if (!ipcMain) return;
+    ipcMain.on('settings', (ev, settings) => {
+        month = settings.month;
+        accessibilityRequirement = settings.accessibilityRequirement;
+        roomType = settings.roomType;
+    });
+}
+
+function updateElectronStatus(channel, message) {
+    if (!electronWindow) return;
+    electronWindow.webContents.send(channel, { message: message })
+}
+
+module.exports = service;
