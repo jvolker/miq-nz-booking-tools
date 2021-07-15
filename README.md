@@ -28,6 +28,8 @@ This script/app opens a browser window and continuously refreshes the ‘Secure 
 
 [read more](https://github.com/jvolker/miq-nz-booking-tools/blob/master/MIQ-Booking-Assistance/README.md)
 
+--- [Download latest release](https://github.com/jvolker/miq-nz-booking-tools/releases/latest) ---
+
 ## MIQ Alert
 
 *This is a different approach. It doesn't offer as many features and is therefore not used by as many people. No coding skills required.*
@@ -35,7 +37,6 @@ This script/app opens a browser window and continuously refreshes the ‘Secure 
 **Features**  
 This is a Chrome browser extension that continuously refreshes the MIQ portal home page and beeps when new dates become available.
 
-[Download](https://github.com/jvolker/miq-nz-booking-tools/releases/latest)
 
 [read more](https://github.com/jvolker/miq-nz-booking-tools/blob/master/MIQ-Alert/README.md)
 ## FAQ
