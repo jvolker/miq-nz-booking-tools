@@ -23,7 +23,7 @@ Register a booking using your regular browser (Firefox, Chrome, etc.) before sta
 6. Wait to hear a beep when dates become available. Keep the window at maximum size.
 7. Quickly book your spot (select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot) on the same page. Alternatively, refresh the page to turn off the alarm.
 
-# Command-line script 
+## Command-line script 
 
 **Features**  
 This is a script based on [Puppeteer](https://github.com/puppeteer/puppeteer) that opens a browser window and continuously refreshes the ‘Secure your allocation’ page and beeps when new dates become available. It defaults to "Double" room option and "No" for the disability question. This is designed to save precious seconds when trying to book a spot. All manual input required is to select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot.
