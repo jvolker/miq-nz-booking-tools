@@ -4,15 +4,13 @@
 
 *This is the recommended way for most people and doesn't require any coding skills*
 
-[Download](https://github.com/jvolker/miq-nz-booking-tools/releases/latest)
-
 **Features**  
 This is an electron application that runs the same script below to check for MIQ spots.
 
 **Usage**  
 Register a booking using your regular browser (Firefox, Chrome, etc.) before starting this process.
 
-1. Run the application that was built in `out`
+1. [Download](https://github.com/jvolker/miq-nz-booking-tools/releases/latest) the application
 2. Log in.
 3. Click on the `View` button of your booking slot.
 4. Click on the `Secure your allocation` button.
