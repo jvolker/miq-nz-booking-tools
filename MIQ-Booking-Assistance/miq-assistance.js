@@ -143,7 +143,6 @@ async function findAvailability(page) {
         const availableDates = dataArrivalDates.split('_');
         const matchingDates = availableDates.filter(d => myDates.indexOf(d) !== -1);
         const myMonths = [...new Set(myDates.filter(d => d.split('-').length === 2).map(d => d.split('-')[1]))].sort();
-        console.log(myMonths);
         const matchingMonths = availableDates.filter(d => myMonths.indexOf(d.split('-')[1]))
         if (matchingDates.length > 0 || matchingMonths.length > 1 || (findAnyDate && availableDates[0])) {
             const month = (findAnyDate ? availableDates[0] : matchingDates[0]).split('-')[1] - 1;
