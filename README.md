@@ -55,6 +55,24 @@ Please use the issue section to help each other using this or discuss improvemen
 
 _If anyone would like to create a screencast video with a walkthrough, I will be very happy to add it to this document._
 
+## Donate
+
+Found this software useful and want to pay it forward? Please consider donating to **Code Club Aotearoa**. 
+
+> Code Club is a nationwide network of free volunteer-led coding clubs for Kiwi kids.
+
+Their mission is: 
+
+> To give every kiwi kid the opportunity to learn to code, no matter who or where they are.
+
+Code Club Aotearoa is "encouraging children to combine their imaginations with an understanding of programming" with "diversity and inclusivity" as core values. 
+
+These MIQ Booking tools are aiming at fairer access to MIQ spots with freely available open-source software. However, no matter how well designed services (like the MIQ booking website) or developed digital tools (like this one) are, their accessibility is based on technology skills that are unfortunately not distributed equally across society. The work of organizations like Code Club Aotearoa will help to make this knowledge gap smaller.
+
+--- [Donate here](https://codeclub.nz/page/support-us) ---
+
+Please note: _Code Club Aotearoa and this project are not associated in any way._
+
 ## Thanks
 
 Thanks to everyone for contributing to this project and helping others find a spot.
