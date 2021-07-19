@@ -23,7 +23,7 @@ const password = 'YOUR_PASSWORD';
 // --------------
 // OPTIONAL: How many seconds to refresh the page. 
 // Don't decrease this further to prevent 403 errors: https://github.com/jvolker/miq-nz-booking-tools/issues/8
-const secondsTillRefresh = 5;
+let secondsTillRefresh = 5;
 
 // --------------
 
@@ -189,6 +189,7 @@ function initElectron(ipcMain, window) {
         accessibilityRequirement = settings.accessibilityRequirement;
         roomType = settings.roomType;
         findAnyDate = settings.findAnyDate;
+        secondsTillRefresh = settings.refreshTime;
 
         if (settings.reset) {
             reset = true;

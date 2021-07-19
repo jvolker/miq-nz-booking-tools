@@ -12,6 +12,7 @@ const clearButton = document.getElementById('clear-button');
 const dateInput = document.getElementById('date-input');
 const dateDiv = document.getElementById('date-div');
 const resetButton = document.getElementById('reset-button');
+const refreshTime = document.getElementById('refresh');
 
 dateDiv.style.display = "none";
 
@@ -75,6 +76,10 @@ resetButton.addEventListener('click', () => {
     sendSettings(true);
 })
 
+refreshTime.addEventListener('change', () => {
+    sendSettings();
+})
+
 function updateDateUI() {
     dateList.innerHTML = "";
     dates.forEach(d => {
@@ -92,6 +97,7 @@ function sendSettings(reset = false){
             accessibilityRequirement: accessibilityRoomYes.checked,
             roomType: roomType.value,
             findAnyDate: findAnyDateYes.checked,
-            reset: reset
+            reset: reset,
+            refreshTime: refreshTime.value
         });
 }
