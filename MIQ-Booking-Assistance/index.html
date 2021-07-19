@@ -15,34 +15,47 @@
 <hr/>
 <div>
     <h3>Settings:</h3>
-    <label for="months">Month:</label>
-    <select name="months" id="months">
-        <option value="1">January</option>
-        <option value="2">February</option>
-        <option value="3">March</option>
-        <option value="4">April</option>
-        <option value="5">May</option>
-        <option value="6">June</option>
-        <option value="7">July</option>
-        <option value="8">August</option>
-        <option value="9">September</option>
-        <option value="10">October</option>
-        <option value="11">November</option>
-        <option value="12">December</option>
-    </select></div>
+    <p>Find any date:</p>
+    <input type="radio" id="findAnyDate_yes" name="findAnyDate" checked>
+    <label for="findAnyDate_yes">Yes</label><br>
+    <input type="radio" id="findAnyDate_no" name="findAnyDate">
+    <label for="findAnyDate_no">No</label><br>
+</div>
+<div id="date-div" style="display: none !important;">
+    <br/>
+    <label for="date-input">Date/Month to find:</label>
+    <input type="date" id="date-input">
+    <input type="button" id="date-button" value="Add Date">
+    <input type="button" id="month-button" value="Add Month">
+    <input type="button" id="clear-button" value="Clear">
+    <div style="float: left;">
+        <p>Dates:</p>
+        <ul id="date-list">
+        </ul>
+    </div>
+</div>
+<div>
     <br/>
     <label for="roomType">Room Type:</label>
-
     <select name="roomType" id="roomType">
         <option value="double">Double</option>
         <option value="twin">Twin Share</option>
-    </select></div>
+    </select>
 
     <p>Accessibility Room:</p>
     <input type="radio" id="accessibilityRoom_yes" name="accessibilityRoom">
     <label for="accessibilityRoom_yes">Yes</label><br>
     <input type="radio" id="accessibilityRoom_no" name="accessibilityRoom" checked>
     <label for="accessibilityRoom_no">No</label><br>
+
+    <br/>
+    <label for="refresh">Page Refresh Time (s):</label>
+    <input type="number" id="refresh" value="5">
+</div>
+<hr/>
+<div>
+    <input type="button" id="reset-button" value="Restart Search">
+</div>
 </body>
 <script src="./renderer.js"></script>
 </html>
