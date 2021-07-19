@@ -11,6 +11,8 @@ const dateList = document.getElementById('date-list');
 const clearButton = document.getElementById('clear-button');
 const dateInput = document.getElementById('date-input');
 const dateDiv = document.getElementById('date-div');
+const resetButton = document.getElementById('reset-button');
+
 dateDiv.style.display = "none";
 
 let dates = [];
@@ -21,10 +23,16 @@ sendSettings();
 
 ipcRenderer.on('status', function (evt, status) {
     document.getElementById('status').innerText = status.message;
+    resetButton.disabled = true;
 });
 
 ipcRenderer.on('status-count', function (evt, status) {
     document.getElementById('status-count').innerText = status.message;
+    resetButton.disabled = true;
+});
+
+ipcRenderer.on('available', function (evt, message) {
+    resetButton.disabled = false;
 });
 
 accessibilityRoomYes.addEventListener('change', sendSettings)
@@ -63,6 +71,10 @@ findAnyDateNo.addEventListener('change', () => {
     sendSettings();
 })
 
+resetButton.addEventListener('click', () => {
+    sendSettings(true);
+})
+
 function updateDateUI() {
     dateList.innerHTML = "";
     dates.forEach(d => {
@@ -72,13 +84,14 @@ function updateDateUI() {
     })
 }
 
-function sendSettings(){
+function sendSettings(reset = false){
     ipcRenderer.send(
         'settings',
         {
             dates: dates,
             accessibilityRequirement: accessibilityRoomYes.checked,
             roomType: roomType.value,
-            findAnyDate: findAnyDateYes.checked
+            findAnyDate: findAnyDateYes.checked,
+            reset: reset
         });
 }

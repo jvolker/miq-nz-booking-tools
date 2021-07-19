@@ -29,6 +29,7 @@ const secondsTillRefresh = 5;
 
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+let reset = false;
 let checkedCount = 0;
 let electronWindow;
 
@@ -65,17 +66,35 @@ function start(window, ipcMain) {
         console.log('A new browser window should appear. Please navigate to "Secure your allocation" page.')
 
         if (step === "login") await login(page)
-        await page.goto('https://allocation.miq.govt.nz/portal/dashboard');
-        while (true) {
-            await page.waitForTimeout(300);
-            if (page.url().includes('/event/MIQ-DEFAULT-EVENT/accommodation')) {
-                break
+        if (!page.url().includes('MIQ-DEFAULT-EVENT/accommodation')) {
+            await page.goto('https://allocation.miq.govt.nz/portal/dashboard');
+            while (true) {
+                await page.waitForTimeout(300);
+                if (page.url().includes('/event/MIQ-DEFAULT-EVENT/accommodation')) {
+                    break
+                }
             }
         }
-
         updateElectronStatus('status', 'Found "Secure your allocation" page! Wait for beep sound, then select date and continue booking.')
         console.log('Found "Secure your allocation" page! Wait for beep sound, then select date and continue booking.')
-        await prepareAndCheckPage(page)
+        while (true) {
+            await prepareAndCheckPage(page)
+            while(true) {
+                // Found date availability
+                // Wait for the reset button to be pressed.
+                updateElectronAvailable();
+                await page.waitForTimeout(300);
+                if (page.url().includes('/event/MIQ-DEFAULT-EVENT/accommodation') && reset) {
+                    reset = false;
+                    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+                    break;
+                }
+            }
+
+        }
+
+
+
     })();
 }
 
@@ -113,6 +132,7 @@ async function prepareAndCheckPage(page) {
         const status = "AVAILABLE! Found at: " + new Date().toLocaleString();
         console.log(status)
         updateElectronStatus('status-count', status);
+        testDates = [];
     } else {
         // Remove the previous log message if we have checked before and we are running in node.
         if (process.stdout.moveCursor && checkedCount){
@@ -169,12 +189,21 @@ function initElectron(ipcMain, window) {
         accessibilityRequirement = settings.accessibilityRequirement;
         roomType = settings.roomType;
         findAnyDate = settings.findAnyDate;
+
+        if (settings.reset) {
+            reset = true;
+        }
     });
 }
 
 function updateElectronStatus(channel, message) {
     if (!electronWindow) return;
     electronWindow.webContents.send(channel, { message: message })
+}
+
+function updateElectronAvailable() {
+    if (!electronWindow) return;
+    electronWindow.webContents.send('available', { available: true })
 }
 
 module.exports = service;
