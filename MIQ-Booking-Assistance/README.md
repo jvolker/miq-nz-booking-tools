@@ -14,9 +14,8 @@ Register a booking using your regular browser (Firefox, Chrome, etc.) before sta
 2. Log in.
 3. Click on the `View` button of your booking slot.
 4. Click on the `Secure your allocation` button.
-5. Change your preference for room type, month etc. from the settings window that also opens
-6. Wait to hear a beep when dates become available. Keep the window at maximum size.
-7. Quickly book your spot (select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot) on the same page. Alternatively, refresh the page to turn off the alarm.
+6. Wait for the beep sound (make sure your speakers are not muted)
+7. Quickly book your spot (confirm the selected date is what you want, tick the reCAPTCHA and click ‘Next’ to secure your spot) on the same page. Alternatively, refresh the page to turn off the alarm.
 
 ---
 
@@ -28,7 +27,7 @@ Register a booking using your regular browser (Firefox, Chrome, etc.) before sta
 ## Command-line script 
 
 **Features**  
-This is a script based on [Puppeteer](https://github.com/puppeteer/puppeteer) that opens a browser window and continuously refreshes the ‘Secure your allocation’ page and beeps when new dates become available. It defaults to "Double" room option and "No" for the disability question. This is designed to save precious seconds when trying to book a spot. All manual input required is to select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot.
+This is a script based on [Puppeteer](https://github.com/puppeteer/puppeteer) that opens a browser window and continuously refreshes the ‘Secure your allocation’ page and beeps when new dates become available.This is designed to save precious seconds when trying to book a spot. All manual input required is to select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot.
 
 *This is allows all kinds of customizations but requires coding skills.*
 
