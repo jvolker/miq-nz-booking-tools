@@ -1,10 +1,7 @@
 const { ipcRenderer } = require('electron')
 
-const accessibilityRoomYes = document.getElementById('accessibilityRoom_yes');
-const accessibilityRoomNo = document.getElementById('accessibilityRoom_no');
 const findAnyDateYes = document.getElementById('findAnyDate_yes');
 const findAnyDateNo = document.getElementById('findAnyDate_no');
-const roomType = document.getElementById('roomType');
 const dateButton = document.getElementById('date-button');
 const monthButton = document.getElementById('month-button');
 const dateList = document.getElementById('date-list');
@@ -35,10 +32,6 @@ ipcRenderer.on('status-count', function (evt, status) {
 ipcRenderer.on('available', function (evt, message) {
     resetButton.disabled = false;
 });
-
-accessibilityRoomYes.addEventListener('change', sendSettings)
-accessibilityRoomNo.addEventListener('change', sendSettings)
-roomType.addEventListener('change', sendSettings)
 
 dateButton.addEventListener('click', () => {
     if(dateInput.value && dates.indexOf(dateInput.value) === -1){
@@ -94,8 +87,6 @@ function sendSettings(reset = false){
         'settings',
         {
             dates: dates,
-            accessibilityRequirement: accessibilityRoomYes.checked,
-            roomType: roomType.value,
             findAnyDate: findAnyDateYes.checked,
             reset: reset,
             refreshTime: refreshTime.value
