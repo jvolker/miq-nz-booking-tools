@@ -147,11 +147,12 @@ async function findAvailability(page) {
         const availableDates = dataArrivalDates.split('_');
         const matchingDates = availableDates.filter(d => myDates.indexOf(d) !== -1);
         const myMonths = [...new Set(myDates.filter(d => d.split('-').length === 2).map(d => d.split('-')[1]))].sort();
-        const matchingMonths = availableDates.filter(d => myMonths.indexOf(d.split('-')[1]))
-        if (matchingDates.length > 0 || matchingMonths.length > 1 || (findAnyDate && availableDates[0])) {
-            const month = (findAnyDate ? availableDates[0] : matchingDates[0]).split('-')[1] - 1;
-            fp.changeMonth(month, false)
+        const matchingMonths = availableDates.filter(d => myMonths.indexOf(d.split('-')[1]) > -1)
+        if (matchingDates.length > 0 || matchingMonths.length > 0 || (findAnyDate && availableDates[0])) {
+            const month = (findAnyDate ? availableDates[0] : matchingDates[0] || matchingMonths[0]).split('-')[1] - 1;
+            fp.changeMonth(month, false);
             beep()
+            fp.setDate(matchingDates[0] || matchingMonths[0] || availableDates[0], true);
             return true;
         }
 
