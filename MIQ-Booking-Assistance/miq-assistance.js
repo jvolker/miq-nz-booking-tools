@@ -70,7 +70,7 @@ function start(window, ipcMain) {
             await page.goto('https://allocation.miq.govt.nz/portal/dashboard');
             while (true) {
                 await page.waitForTimeout(300);
-                if (page.url().includes('/event/MIQ-DEFAULT-EVENT/accommodation')) {
+                if (page.url().includes('/event/MIQ-DEFAULT-EVENT/accommodation/arrival-date')) {
                     break
                 }
             }
@@ -84,7 +84,7 @@ function start(window, ipcMain) {
                 // Wait for the reset button to be pressed.
                 updateElectronAvailable();
                 await page.waitForTimeout(300);
-                if (page.url().includes('/event/MIQ-DEFAULT-EVENT/accommodation') && reset) {
+                if (page.url().includes('/event/MIQ-DEFAULT-EVENT/accommodation/arrival-date') && reset) {
                     reset = false;
                     await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
                     break;
@@ -110,22 +110,6 @@ async function login(page) {
 }
 
 async function prepareAndCheckPage(page) {
-    //accessibility requirement
-    await page.waitForSelector('#form_rooms_0_accessibilityRequirement_1');
-    page.$eval('#form_rooms_0_accessibilityRequirement_' + (accessibilityRequirement ? 0 : 1), elem => {
-        elem.checked = true;
-    });
-
-    page.$eval('#form_rooms_0_room', (elem, roomType) => {
-        switch (roomType){
-            case 'twin':
-                elem.value = 'Twin share';
-                break;
-            default:
-                elem.value = 'Double';
-        }
-    }, roomType);
-
     await page.waitForSelector('.flatpickr-input');
 
     if (await findAvailability(page)) {
