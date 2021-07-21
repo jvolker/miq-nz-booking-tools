@@ -24,25 +24,3 @@ body:
       value: operating system
     validations:
       required: true
----
-
-**Describe the bug**
-A clear and concise description of what the bug is.
-
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
-
-**Expected behavior**
-A clear and concise description of what you expected to happen.
-
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
-**Your system (please complete the following information):**
- - Operating System: [e.g. macOS 11.2.3 or Windows 10]
- - Version:  [e.g. MIQ-Booking-Assistance 0.10.1]
-
