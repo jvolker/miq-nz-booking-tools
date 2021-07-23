@@ -1,6 +1,6 @@
 {
   "name": "miq-nz-booking-assistance",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "A tool to help you book MIQ",
   "main": "main.js",
   "scripts": {
