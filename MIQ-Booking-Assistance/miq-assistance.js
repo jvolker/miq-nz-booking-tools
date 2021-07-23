@@ -75,8 +75,8 @@ function start(window, ipcMain) {
                 }
             }
         }
-        updateElectronStatus('status', 'Found "Secure your allocation" page! Wait for beep sound, then select date and continue booking.')
-        console.log('Found "Secure your allocation" page! Wait for beep sound, then select date and continue booking.')
+        updateElectronStatus('status', 'Found "Secure your allocation" page! Wait for beep sound, confirm the date selected is what you want, then do the reCAPTCHA and click \'next\' to continue booking.')
+        console.log('Found "Secure your allocation" page! Wait for beep sound, confirm the date selected is what you want, then do the reCAPTCHA and click \'next\' to continue booking.')
         while (true) {
             await prepareAndCheckPage(page)
             while(true) {
@@ -110,7 +110,7 @@ async function login(page) {
 }
 
 async function prepareAndCheckPage(page) {
-    await page.waitForSelector('.flatpickr-input');
+    await page.waitForSelector('#accommodation-calendar');
 
     if (await findAvailability(page)) {
         const status = "AVAILABLE! Found at: " + new Date().toLocaleString();
@@ -143,8 +143,12 @@ async function findAvailability(page) {
         }
         calendarElem.scrollIntoView();
 
-        const dataArrivalDates = calendarElem.getAttribute('data-arrival-dates');
-        const availableDates = dataArrivalDates.split('_');
+        const dataArrivalDates = fp.config.enable;
+        if (!dataArrivalDates || typeof dataArrivalDates[0] === 'function' || dataArrivalDates.length <= 0 ){
+            return false;
+        }
+
+        const availableDates = dataArrivalDates;
         const matchingDates = availableDates.filter(d => myDates.indexOf(d) !== -1);
         const myMonths = [...new Set(myDates.filter(d => d.split('-').length === 2).map(d => d.split('-')[1]))].sort();
         const matchingMonths = availableDates.filter(d => myMonths.indexOf(d.split('-')[1]) > -1)
