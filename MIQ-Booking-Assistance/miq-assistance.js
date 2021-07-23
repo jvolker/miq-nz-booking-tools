@@ -90,11 +90,7 @@ function start(window, ipcMain) {
                     break;
                 }
             }
-
         }
-
-
-
     })();
 }
 
@@ -110,7 +106,7 @@ async function login(page) {
 }
 
 async function prepareAndCheckPage(page) {
-    await page.waitForSelector('#accommodation-calendar');
+    await page.waitForSelector('#accommodation-calendar', {visible: true});
 
     if (await findAvailability(page)) {
         const status = "AVAILABLE! Found at: " + new Date().toLocaleString();
@@ -139,19 +135,19 @@ async function findAvailability(page) {
         const fp = calendarElem._flatpickr;
         if (testDates && testDates.length > 0 && checkedCount > 2) {
             fp.config.enable = testDates;
-            calendarElem.setAttribute('data-arrival-dates', testDates.join("_"));
         }
         calendarElem.scrollIntoView();
 
-        const dataArrivalDates = fp.config.enable;
+        const dataArrivalDates = fp?.config?.enable;
         if (!dataArrivalDates || typeof dataArrivalDates[0] === 'function' || dataArrivalDates.length <= 0 ){
             return false;
         }
 
-        const availableDates = dataArrivalDates;
+        const availableDates = dataArrivalDates.map(d => d.toISOString().split('T')[0]);
         const matchingDates = availableDates.filter(d => myDates.indexOf(d) !== -1);
         const myMonths = [...new Set(myDates.filter(d => d.split('-').length === 2).map(d => d.split('-')[1]))].sort();
-        const matchingMonths = availableDates.filter(d => myMonths.indexOf(d.split('-')[1]) > -1)
+        const matchingMonths = availableDates.filter(d => myMonths.indexOf(d.split('-')[1]) > -1);
+
         if (matchingDates.length > 0 || matchingMonths.length > 0 || (findAnyDate && availableDates[0])) {
             const month = (findAnyDate ? availableDates[0] : matchingDates[0] || matchingMonths[0]).split('-')[1] - 1;
             fp.changeMonth(month, false);
