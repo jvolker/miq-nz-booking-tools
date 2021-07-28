@@ -1,7 +1,7 @@
 // MIQ BOOKING ASSISTANCE
 
 // CHANGE DATES TO WHAT YOU ARE LOOKING FOR
-let myDates = ['2021-8-5', '2021-8-10', '2021-9'];
+let myDates = ['2021-08-5', '2021-08-10', '2021-09'];
 
 // DON'T CARE ABOUT A SPECIFIC DATE? SET THIS TO TRUE
 let findAnyDate = true;
