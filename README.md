@@ -45,7 +45,7 @@ This wil happen after the website has refreshed many times. Please wait 5-10 min
 
 > How much time do I have to book a spot?
 
-It seems less that currently, less than 3 seconds. This might vary though.
+It seems that currently, less than 3 seconds. This might vary though.
 
 > After I click next, the page refreshes and nothing happens.
 
