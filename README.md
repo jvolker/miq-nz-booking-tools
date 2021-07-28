@@ -39,13 +39,21 @@ This is a Chrome browser extension that continuously refreshes the MIQ portal ho
 
 If you have questions, feel free to use the `Issues` section (select at the top of this page). Asking publicly will help others with a similar question and you might get help from more people.
 
-> I’m getting a `502 Bad Gateway` or `404` Error. What should I do? 
+> I’m getting a `502 Bad Gateway`, `404` or `403 Forbidden` Error. What should I do? 
 
 This wil happen after the website has refreshed many times. Please wait 5-10 minutes and reactivate the script/app.
 
-> How much time to I have to book a spot?
+> How much time do I have to book a spot?
 
-It seems less than 10 seconds. This might vary though.
+It seems less that currently, less than 3 seconds. This might vary though.
+
+> After I click next, the page refreshes and nothing happens.
+
+This means that unfortunately, someone was quicker than you to secure the date.
+
+> The alert sounds but I don't see a date selected in tha calendar.
+
+Don't worry, the app will input the date without having to change the calendar UI. You can proceed to complete the reCAPTCHA and click next as soon as you hear the beep.
 
 ## Contributions
 
