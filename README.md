@@ -51,10 +51,6 @@ It seems that currently, less than 3 seconds. This might vary though.
 
 This means that unfortunately, someone was quicker than you to secure the date.
 
-> The alert sounds but I don't see a date selected in tha calendar.
-
-Don't worry, the app will input the date without having to change the calendar UI. You can proceed to complete the reCAPTCHA and click next as soon as you hear the beep.
-
 ## Contributions
 
 These tools are only a quick attempt to create some remedy. They are by far, not finished or perfect. Also, in case MIQ changes their website, they might break any time too.
