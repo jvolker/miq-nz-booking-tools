@@ -1,10 +1,10 @@
 // MIQ BOOKING ASSISTANCE
 
 // CHANGE DATES TO WHAT YOU ARE LOOKING FOR
-let myDates = ['2021-08'];
+let myDates = ['2021-08', '2021-09-10'];
 
 // DON'T CARE ABOUT A SPECIFIC DATE? SET THIS TO TRUE
-let findAnyDate = false;
+let findAnyDate = true;
 
 let accessibilityRequirement = false; // change to "true" if you have accessibility requirement
 let roomType = 'twin'; // double or twin
@@ -140,8 +140,8 @@ async function prepareAndCheckPage(page) {
 
 async function findAvailability(page) {
     return await page.evaluate((myDates, testDates, findAnyDate, checkedCount) => {
-        const calendarElem = document.getElementById('accommodation');
-        calendarElem.scrollIntoView();
+        const nextElem = document.getElementById('form_next');
+        nextElem.scrollIntoView();
 
         const availableDateElements = [...document.querySelectorAll('[class$="_item"] :not(.no)')].filter(d => d.ariaLabel);
         const availableDates = availableDateElements.map(e => {
