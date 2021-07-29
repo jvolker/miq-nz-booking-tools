@@ -140,8 +140,8 @@ async function prepareAndCheckPage(page) {
 
 async function findAvailability(page) {
     return await page.evaluate((myDates, testDates, findAnyDate, checkedCount) => {
-        const nextElem = document.getElementById('form_next');
-        nextElem.scrollIntoView();
+        const nextElem = document.getElementsByClassName('mo-7-2021');
+        nextElem[0].scrollIntoView();
 
         const availableDateElements = [...document.querySelectorAll('[class$="_item"] :not(.no)')].filter(d => d.ariaLabel);
         const availableDates = availableDateElements.map(e => {
