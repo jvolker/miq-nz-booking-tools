@@ -71,20 +71,6 @@ function start(window, ipcMain) {
                     //Todo, add test dates back
                     document.querySelectorAll('[class$="d__item"]')[65]?.children[0]?.classList?.remove('no')
                 }
-                if(Notification.permission !== "granted") {
-                    Notification.requestPermission().then((result) => {
-                        if (result === 'granted') {
-                            setTimeout(function(){
-                                const notifTitle = 'Found "Secure your allocation" page!';
-                                const notifBody = 'Wait for another notification, confirm the date selected is what you want, then do the reCAPTCHA and click \'next\' to continue booking.';
-                                const options = {
-                                    body: notifBody
-                                };
-                                        new Notification(notifTitle, options);
-                            }, 1000);
-                        }
-                    });
-                }
             });
         }, testDates)
 
@@ -98,7 +84,6 @@ function start(window, ipcMain) {
                 }
             }
         }
-        
         updateElectronStatus('status', 'Found "Secure your allocation" page! Wait for beep sound, confirm the date selected is what you want, then do the reCAPTCHA and click \'next\' to continue booking.')
         console.log('Found "Secure your allocation" page! Wait for beep sound, confirm the date selected is what you want, then do the reCAPTCHA and click \'next\' to continue booking.')
         while (true) {
@@ -118,9 +103,6 @@ function start(window, ipcMain) {
     })();
 }
 
-
-
-
 async function login(page) {
     // this is not in use at the moment but might be used to prefill credentials
 
@@ -136,22 +118,6 @@ async function prepareAndCheckPage(page) {
     await page.waitForSelector('#accommodation', {visible: true});
 
     if (await findAvailability(page)) {
-        await page.evaluate(() => {
-            async function sendNotificationOnPage(title, body) {
-                if(Notification.permission === 'granted'){
-                    setTimeout(function(){
-                        const notifTitle = title;
-                        const notifBody = body;
-                        const options = {
-                            body: notifBody
-                        };
-                                new Notification(notifTitle, options);
-                    }, 3000);
-                }
-            }
-            sendNotificationOnPage("AVAILABLE! Found at:"  + new Date().toLocaleString(), "There is a spot AVAILABLE! Found at:"  + new Date().toLocaleString());
-        });
-        
         const status = "AVAILABLE! Found at: " + new Date().toLocaleString();
         console.log(status)
         updateElectronStatus('status-count', status);
