@@ -142,8 +142,13 @@ async function findAvailability(page) {
     return await page.evaluate((myDates, testDates, findAnyDate, checkedCount) => {
         const nextElem = document.getElementById('form_next');
         nextElem.scrollIntoView();
-
-        const availableDateElements = [...document.querySelectorAll('[class$="_item"] :not(.no)')].filter(d => d.ariaLabel);
+        
+        const prefix = document.querySelector('.mo-6 > div').getAttribute('class')
+        const suffix = document.querySelector('.mo-6 > div > div').getAttribute('class')
+        const dayParentClass = `${prefix}j${suffix}`
+        const dayDisabledClass = `${suffix}${suffix}`
+            
+        const availableDateElements = [...document.querySelectorAll(`.mo-6 .${dayParentClass} :not(.${dayDisabledClass})[aria-label]`)];
         const availableDates = availableDateElements.map(e => {
             return {
                 elem: e,
