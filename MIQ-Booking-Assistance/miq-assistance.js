@@ -152,7 +152,7 @@ async function findAvailability(page) {
         const availableDates = availableDateElements.map(e => {
             return {
                 elem: e,
-                str: getDateStringFromElement(e)
+                str: getDateStringFromElement(e, prefix, suffix)
             }
         });
 
@@ -184,9 +184,9 @@ async function findAvailability(page) {
             snd.play();
         }
 
-        function getDateStringFromElement(e) {
+        function getDateStringFromElement(e, prefix, suffix) {
             let i = e.innerText
-                , n = e.parentElement.parentElement.parentElement.querySelector('[class$="m__title"]').children[0].className
+                , n = e.parentElement.parentElement.parentElement.querySelector(`.${prefix}mt${suffix}`).children[0].className
                 , s = n.split("-")[1];
             return n.split("-")[2] + "-" + (s < 10 ? "0" + s : s) + "-" + (i < 10 ? "0" + i : i)
         }
