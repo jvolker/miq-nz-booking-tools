@@ -69,7 +69,13 @@ function start(window, ipcMain) {
             window.addEventListener('DOMContentLoaded', (event) => {
                 if (testDates) {
                     //Todo, add test dates back
-                    document.querySelectorAll('[class$="d__item"]')[65]?.children[0]?.classList?.remove('no')
+                    const prefix = document.querySelector('.mo-6 > div').getAttribute('class')
+                    const suffix = document.querySelector('.mo-6 > div > div').getAttribute('class')
+                    const dayParentClass = `${prefix}j${suffix}`
+                    const dayDisabledClass = `${suffix}${suffix}`
+                    const dayEnabledClass = `${suffix}`
+                    
+                    document.querySelectorAll(`.${dayParentClass}`)[65]?.children[0]?.classList?.replace(dayDisabledClass, dayEnabledClass)
                 }
             });
         }, testDates)
