@@ -1,5 +1,7 @@
 # New Zealand MIQ (Managed Isolation and Quarantine) Tools
 
+[![Sponsoring][sponsor-badge]][sponsor-url]
+
 These tools were designed to make it easier to book a spot in New Zealand Managed Isolation and Quarantine. This should mainly help you save your precious time and not have to manually refresh the website until you find one of the rare spots.
 
 **HELP OTHERS:**  
@@ -70,3 +72,7 @@ Also this mainly starts [here](https://github.com/jvolker/miq-nz-booking-tools),
 ## Thanks
 
 Thanks to everyone for contributing to this project and helping others find a spot.
+
+
+[sponsor-badge]: https://img.shields.io/badge/-Support%20this!-blue?style=flat-square
+[sponsor-url]: https://www.buymeacoffee.com/mojr
