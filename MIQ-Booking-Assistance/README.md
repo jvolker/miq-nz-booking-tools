@@ -1,5 +1,7 @@
 # MIQ Booking Assistance
 
+[![Sponsoring][sponsor-badge]][sponsor-url]
+
 ## App
 
 *This is the recommended way for most people and doesn't require any coding skills*
@@ -48,3 +50,6 @@ Register a booking using your regular browser (Firefox, Chrome, etc.) before sta
 8. You can close the script/window by pressing CTRL + C on the command line.
 
 *These defaults can be changed at the top of the file `miq-assistance.js` under `MIQ-Booking-Assistance` folder. Customization is limited to those options at this stage but can be achieved by extending the script.*
+
+[sponsor-badge]: https://img.shields.io/badge/-Support%20this!-blue?style=flat-square
+[sponsor-url]: https://www.buymeacoffee.com/mojr
