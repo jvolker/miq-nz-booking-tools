@@ -10,7 +10,7 @@ This is an electron application that runs the same script below to check for MIQ
 **Usage**  
 Register a booking using your regular browser (Firefox, Chrome, etc.) before starting this process.
 
-1. [Download](https://github.com/jvolker/miq-nz-booking-tools/releases/latest) the application
+1. [Download](https://github.com/monagjr/miq-nz-booking-tools/releases/latest) the application
 2. Log in.
 3. Click on the `View` button of your booking slot.
 4. Click on the `Secure your allocation` button.
