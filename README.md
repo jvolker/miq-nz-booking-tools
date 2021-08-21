@@ -20,9 +20,9 @@ Before using this software, make sure you are not violating the terms of service
 **Features**  
 This script/app opens a browser window and continuously refreshes the ‘Secure your allocation’ page and beeps when new dates become available. It prefills the form to save precious seconds when trying to book a spot. All manual input required is to select the available date, tick the reCAPTCHA and click ‘Next’ to secure your spot.
 
-[read more](https://github.com/jvolker/miq-nz-booking-tools/blob/master/MIQ-Booking-Assistance/README.md)
+[read more](https://github.com/monagjr/miq-nz-booking-tools/blob/master/MIQ-Booking-Assistance/README.md)
 
---- [Download latest release](https://github.com/jvolker/miq-nz-booking-tools/releases/latest) ---
+--- [Download latest release](https://github.com/monagjr/miq-nz-booking-tools/releases/latest) ---
 
 ## MIQ Alert
 
@@ -32,12 +32,12 @@ This script/app opens a browser window and continuously refreshes the ‘Secure 
 This is a Chrome browser extension that continuously refreshes the MIQ portal home page and beeps when new dates become available.
 
 
-[read more](https://github.com/jvolker/miq-nz-booking-tools/blob/master/MIQ-Alert/README.md)
+[read more](https://github.com/monagjr/miq-nz-booking-tools/blob/master/MIQ-Alert/README.md)
 ## FAQ
 
 > I'm lost. / I have another question not answered here yet.
 
-If you have questions, feel free to use the `Issues` section (select at the top of this page). Asking publicly will help others with a similar question and you might get help from more people.
+If you have questions, feel free to use the [`Discussions`](https://github.com/monagjr/miq-nz-booking-tools/discussions) section (select at the top of this page). Asking publicly will help others with a similar question and you might get help from more people.
 
 > I’m getting a `502 Bad Gateway`, `404` or `403 Forbidden` Error. What should I do? 
 
@@ -55,27 +55,17 @@ This means that unfortunately, someone was quicker than you to secure the date.
 
 These tools are only a quick attempt to create some remedy. They are by far, not finished or perfect. Also, in case MIQ changes their website, they might break any time too.
 
-Please use the issue section to help each other using this or discuss improvements. Of course, pull requests are welcome too.
+Please use the [`Discussions`](https://github.com/monagjr/miq-nz-booking-tools/discussions) section to help each other using this or discuss improvements. Of course, pull requests are welcome too.
 
 _If anyone would like to create a screencast video with a walkthrough, I will be very happy to add it to this document._
 
 ## Donate
 
-Found this software useful and want to pay it forward? Please consider donating to **Code Club Aotearoa**. 
+Found this software useful and want to pay it forward? Please consider [donating](https://www.buymeacoffee.com/mojr).
 
-> Code Club is a nationwide network of free volunteer-led coding clubs for Kiwi kids.
+Also this mainly starts [here](https://github.com/jvolker/miq-nz-booking-tools), so consider donating to [Code Club Aotearoa](https://codeclub.nz/page/support-us) too. 
 
-Their mission is: 
-
-> To give every kiwi kid the opportunity to learn to code, no matter who or where they are.
-
-Code Club Aotearoa is "encouraging children to combine their imaginations with an understanding of programming" with "diversity and inclusivity" as core values. 
-
-These MIQ Booking tools are aiming at fairer access to MIQ spots with freely available open-source software. However, no matter how well designed services (like the MIQ booking website) or developed digital tools (like this one) are, their accessibility is based on technology skills that are unfortunately not distributed equally across society. The work of organizations like Code Club Aotearoa will help to make this knowledge gap smaller.
-
---- [Donate here](https://codeclub.nz/page/support-us) ---
-
-Please note: _Code Club Aotearoa and this project are not associated in any way._
+--- [Donate here](https://www.buymeacoffee.com/mojr) ---
 
 ## Thanks
 
