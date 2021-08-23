@@ -59,6 +59,18 @@ Please use the issue section to help each other using this or discuss improvemen
 
 _If anyone would like to create a screencast video with a walkthrough, I will be very happy to add it to this document._
 
+### Pull Requests
+
+Please give the maintainers of this project time to get back to you. Please keep in mind, everyone on this project is doing this voluntary in their spare time while some are also working full-time jobs. Anyone in the community can comment or review code though.
+
+### Become a maintainer
+
+Please [get in touch](https://github.com/jvolker/miq-nz-booking-tools/issues/134) if you like to become a maintainer. 
+
+### Forks
+
+The inequality of MIQ is problematic. The idea of this project is to provide/improve fairer access to MIQ free of charge. Hopefully, anyone (re-)using this code does it in the same spirit, and does so preferrably without personal compensation.
+
 ## Donate
 
 Found this software useful and want to pay it forward? Please consider donating to **Code Club Aotearoa**. 
