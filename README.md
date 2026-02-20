@@ -1,5 +1,7 @@
 # New Zealand MIQ (Managed Isolation and Quarantine) Tools
 
+**ARCHIVED: This project is no longer maintained. MIQ first improved their website with a fairer queuing system, then disappeared entirely as the pandemic ended. Travel to New Zealand is back to normal … making this project unnecessary, thankfully.**
+
 These tools were designed to make it easier to book a spot in New Zealand Managed Isolation and Quarantine. This should mainly help you save your precious time and not have to manually refresh the website until you find one of the rare spots.
 
 **HELP OTHERS:**  
